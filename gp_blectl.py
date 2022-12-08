@@ -15,6 +15,9 @@ class Bluetoothctl:
         time.sleep(pause)
         if self.process.expect(["bluetooth", pexpect.EOF]):
             raise Exception(f"failed after {command}")
+    def prepare(self, mac_address):
+        connect(mac_address)
+        access_commands()
     def connect(self, mac_address):
         try:
             self.send(f"connect {mac_address}", 2)
@@ -26,3 +29,12 @@ class Bluetoothctl:
                 ["Failed to connect", "Connection successful", pexpect.EOF]
             )
             return res == 1
+    def access_commands(self):
+        try:
+            self.send(f"menu gatt")
+        except Exception as e:
+            logger.error(e)
+            return False
+    def shutter_start():
+        try:
+            self.send(f"
