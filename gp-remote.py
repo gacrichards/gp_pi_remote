@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import sys
 from open_gopro import GoPro, Params
+from gp_blectl import Bluetoothctl
 from time import sleep
 LED_PIN = 25
 SHUTTER_PIN = 24
@@ -13,6 +14,10 @@ def setup_gpio():
     GPIO.setup(SHUTTER_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(HILIGHT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(LED_PIN, GPIO.OUT)
+
+def clear_ble():
+    b = Bluetoothctl()
+    b.powercycle()
 
 def start_recording():
     gopro.ble_command.set_shutter(Params.Toggle.ENABLE)
@@ -55,11 +60,13 @@ def main():
 
     setup_gpio()
     print("GPIO configured")
+    clear_ble()
+    print("ble powercycled")
 
     print("Connecting GoPro...")
     connect_gopro()
-    blink_led()
     print("-> Connected")
+    blink_led()
 
     print("Initializing GoPro settings...")
     init_gopro_settings()
