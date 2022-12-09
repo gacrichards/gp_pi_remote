@@ -42,6 +42,3 @@ class Bluetoothctl:
         except Exception as e:
             logger.error(e)
             return False
-    def shutter_start():
-        try:
-            self.send("")
