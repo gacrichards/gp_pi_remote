@@ -10,10 +10,10 @@ class Bluetoothctl:
     def __init__(self):
         subprocess.check_output("rfkill unblock bluetooth", shell=True)
         self.process = pexpect.spawnu("bluetoothctl", echo=False)
-    def powercycle():
+    def powercycle(self):
         try:
-            send("power off", 0.2)
-            send("power on", 0.5)
+            self.send("power off", 0.2)
+            self.send("power on", 0.5)
         except Exception as e:
             logger.error(e)
             return False
