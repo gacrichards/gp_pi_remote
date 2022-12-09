@@ -44,4 +44,4 @@ class Bluetoothctl:
             return False
     def shutter_start():
         try:
-            self.send(f"
+            self.send("")
