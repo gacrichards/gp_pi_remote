@@ -97,9 +97,6 @@ def main():
         GPIO.output(LED_PIN, GPIO.LOW)
         GPIO.cleanup()
         gopro.close()
-        #sleep then try to restart the script
-        sleep(2)
-        os.execl(sys.executable, 'python', __file__, *sys.argv[1:])
 
 if __name__ == "__main__":
     sys.exit(main())
