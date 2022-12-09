@@ -39,15 +39,15 @@ def init_gopro_settings():
 
 def blink_led():
     GPIO.output(LED_PIN, GPIO.HIGH)
-    sleep(0.2)
+    sleep(0.1)
     GPIO.output(LED_PIN, GPIO.LOW)
-    sleep(0.2)
+    sleep(0.1)
     GPIO.output(LED_PIN, GPIO.HIGH)
-    sleep(0.2)
+    sleep(0.1)
     GPIO.output(LED_PIN, GPIO.LOW)
-    sleep(0.2)
+    sleep(0.1)
     GPIO.output(LED_PIN, GPIO.HIGH)
-    sleep(0.2)
+    sleep(0.1)
     GPIO.output(LED_PIN, GPIO.LOW)
 
 def main():
@@ -97,6 +97,9 @@ def main():
         GPIO.output(LED_PIN, GPIO.LOW)
         GPIO.cleanup()
         gopro.close()
+        #sleep then try to restart the script
+        sleep(2)
+        os.execl(sys.executable, 'python', __file__, *sys.argv[1:])
 
 if __name__ == "__main__":
     sys.exit(main())
