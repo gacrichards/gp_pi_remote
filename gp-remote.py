@@ -62,7 +62,7 @@ def main():
     print("GPIO configured")
     clear_ble()
     print("ble powercycled")
-
+    blink_led()
     print("Connecting GoPro...")
     connect_gopro()
     print("-> Connected")
